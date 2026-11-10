@@ -30,6 +30,28 @@
 1. OverLeaf 在线编译
 2. 使用较新的 \LaTeX\ 发行版在本地计算机编译
 
+### macOS / VS Code 本地预览
+
+安装 MacTeX 或 BasicTeX，以及 VS Code 的 LaTeX Workshop 扩展。本项目的
+[工作区配置](.vscode/settings.json) 使用 `/Library/TeX/texbin/xelatex` 编译两次，
+不依赖从 Dock 启动的 VS Code 是否继承了终端的 PATH；同时禁用扩展的 magic
+comment 编译入口，避免文件首行的 `xelatex` 覆盖工作区中的绝对路径配置。
+其他系统需将配置中的 `xelatex` 和 `kpsewhich` 路径改为本机安装位置。
+
+BasicTeX 是精简发行版，需要补齐模板依赖。已有 `xeCJK`、`xltxtra` 等依赖时，
+可在用户目录安装缺失的包，无需管理员权限：
+
+```bash
+# 仅在尚未初始化用户 TeX 树时执行
+/Library/TeX/texbin/tlmgr init-usertree
+/Library/TeX/texbin/tlmgr --usermode install realscripts xifthen ifmtarg enumitem nth
+```
+
+打开 `resume-zh_CN.tex`，运行 `LaTeX Workshop: Build LaTeX project`，
+然后运行 `LaTeX Workshop: View LaTeX PDF file`。PDF 和辅助文件输出到
+`build/`，不会覆盖项目中的图片或 PDF 素材。Overleaf 中仍选择 XeLaTeX，
+无需使用本地 VS Code 配置。
+
 如果确定只需要中文简历的话单独克隆 `master` 分支即可, 需要注意的是该分支包含 Adobe 的宋楷黑仿四套中文字体，压缩包约为37MB。[下载地址](https://github.com/hijiangtao/resume/releases)
 
 ```

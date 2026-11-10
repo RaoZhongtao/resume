@@ -3,6 +3,9 @@ logs
 *.log
 npm-debug.log*
 
+# Local LaTeX output
+/build/
+
 # Runtime data
 pids
 *.pid
