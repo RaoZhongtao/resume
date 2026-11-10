@@ -52,6 +52,11 @@ BasicTeX 是精简发行版，需要补齐模板依赖。已有 `xeCJK`、`xltxt
 `build/`，不会覆盖项目中的图片或 PDF 素材。Overleaf 中仍选择 XeLaTeX，
 无需使用本地 VS Code 配置。
 
+中文简历的实习项目使用 `\projectheading{项目编号}{项目名称}` 统一标题样式，
+单项目实习将项目编号留空即可省略前缀。正文放在 `projectbody` 环境中，
+以 `\item` 为背景、技术方案和实验结果添加圆点；技术方案的嵌套列表使用
+`[label=\textendash]` 显示短横线，区分内容层级，并保留项目之间的留白。
+
 如果确定只需要中文简历的话单独克隆 `master` 分支即可, 需要注意的是该分支包含 Adobe 的宋楷黑仿四套中文字体，压缩包约为37MB。[下载地址](https://github.com/hijiangtao/resume/releases)
 
 ```
