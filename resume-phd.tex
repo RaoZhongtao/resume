@@ -1,0 +1,159 @@
+% !TEX TS-program = xelatex
+% !TEX encoding = UTF-8 Unicode
+
+\documentclass{resume}
+\usepackage{linespacing_fix}
+\usepackage[hidelinks]{hyperref}
+\usepackage{microtype}
+
+% North American academic CVs conventionally use US Letter paper.
+\geometry{letterpaper, left=0.65in, right=0.65in, top=0.55in, bottom=0.55in}
+\setlist[itemize]{leftmargin=1.25em, topsep=0.2em, itemsep=0.08em, parsep=0pt}
+\urlstyle{same}
+
+\begin{document}
+\pagestyle{empty}
+
+\name{Zhongtao Rao}
+\begin{center}
+  {\faEnvelope}\ \href{mailto:raozhongtao@gmail.com}{raozhongtao@gmail.com} |
+  {\faPhone}\ {+86 137 2777 2117} |
+  {\faGithub}\ \href{https://raozhongtao.github.io/}{https://raozhongtao.github.io/}
+\end{center}
+\vspace{-0.8em}
+
+
+\section{Research Interests}
+Large Language Models and their applications in Data Mining and Information Retrieval; Representation Learning and Personalization; Multimodal Recommendation
+
+\section{Education}
+\datedsubsection{\textbf{The Hong Kong University of Science and Technology (Guangzhou)}}{Aug. 2024 -- Jan. 2027}
+\textit{M.Phil. in Data Science and Analytics}
+\hfill Guangzhou, China
+
+Advisor: \href{https://nantang.github.io/}{Prof. Nan Tang} and \href{https://luoyuyu.vip/}{Prof. Yuyu Luo}
+
+
+\datedsubsection{\textbf{South China University of Technology}}{Sept. 2019 -- June 2023}
+\textit{B.Sc. in Information and Computing Science} \hfill Guangzhou, China
+
+\section{Publications}
+\begin{itemize}
+  \item \textbf{Z. Rao}, P. Zhou, D. Chong, Z. Chen, S. Wang, and N. Tang.
+  ``Structural and Disentangled Adaptation of Large Vision Language Models for Multimodal Recommendation.''
+  In \textit{Proceedings of the 49th International ACM SIGIR Conference on Research and Development in Information Retrieval} \textbf{(SIGIR 2026)}.
+  \textbf{[\href{https://doi.org/10.1145/3805712.3809977}{Paper}]
+  [\href{https://github.com/RaoZhongtao/SDA}{Code}]}
+
+  \item P. Zhou, C. Liu, J. Ren, X. Zhou, Y. Xie, M. Cao, \textbf{Z. Rao}, Y.-L. Huang, D. Chong, J. Liu, J. B. Kim, S. Wang, R. C.-W. Wong, and S. Kim.
+  ``When Large Vision Language Models Meet Multimodal Sequential Recommendation: An Empirical Study.''
+  In \textit{Proceedings of the ACM on Web Conference 2025} \textbf{(WWW 2025 Oral)}.
+  \textbf{[\href{https://doi.org/10.1145/3696410.3714764}{Paper}]
+   [\href{https://github.com/PALIN2018/MSRBench}{Code}]}
+\end{itemize}
+
+% \section{Research Experience}
+% \datedsubsection{\textbf{Data Intelligence and Analytics Lab, HKUST(GZ)}}{Oct. 2024 -- Present}
+% \textit{Research Assistant, Advisor: \href{https://nantang.github.io/}{Prof. Nan Tang} and \href{https://palin2018.github.io/}{Dr. Peilin Zhou}}
+% \textit{Advisor: Prof. Nan Tang}
+
+
+% \begin{itemize}
+%   \item Investigated Large Vision Language Models (LVLMs) as unified item encoders for multimodal recommendation to address semantic misalignment between independently encoded modalities.
+%   % as unified item encoders to address semantic-space misalignment and noisy cross-modal fusion caused by independent visual and textual encoders.
+%   \item Applied Qwen-VL and LLaMA-Vision to item images and structured attribute descriptions, using mean-pooled hidden states to derive modality-specific representations for downstream recommendation.
+%   \item Formulated structure-aware item-level contrastive learning with soft targets derived from in-batch similarities to transfer general visual--language knowledge while preserving local item-semantic neighborhoods.
+%   \item Proposed \textit{Modality-Aware Mixture-of-Experts LoRA}, using modality-aware routing over specialized LoRA experts to mitigate cross-modal gradient interference during LVLM adaptation.
+%   % \item Transferred the learned representations to sequential recommendation by initializing item ID embeddings through an MLP; conducted backbone comparisons, ablations, and long-tail evaluations on Amazon Beauty, Sports, and Toys.
+%   \item Evaluated the method on three Amazon benchmarks, improving Hit@10 and NDCG@10 by \textbf{6.15\%} and \textbf{8.64\%} on average and by up to \textbf{12.83\%} and \textbf{18.70\%} on long-tail subsets; published the findings at SIGIR 2026.
+% \end{itemize}
+
+\section{Industry Experience}
+\datedsubsection{\textbf{Microsoft}}{July 2026 -- Present}
+\textit{Applied Scientist Intern}, advised by \href{https://nan-li.cn/}{Dr. Nan Li}
+\hfill Suzhou, China
+
+Conducted research on \textbf{Large Recommendation Models} for Multi-Task News Ranking of Microsoft MSN.
+\vspace{-0.1em}
+\begin{itemize}
+  \item Formulated multi-objective news ranking as a large-scale representation-learning problem, jointly modeling sequential behavior and heterogeneous feature interactions with unified models.
+  \item Applied \textbf{RankMixer} for efficient and deep interaction with sequential and static features. 
+  % \item Introduced an adaptive tokenizer over sparse and dense features and coupled RankMixer with MaskNet to model higher-order interactions between sequential interests and contextual signals.
+  \item Evaluated scaling from 64M to 95M parameters on approximately 4B training examples, demonstrating relative AUC gains of \textbf{0.141\%}, \textbf{0.135\%}, and \textbf{0.185\%} for Click, Long Dwell, and Like, respectively.
+\end{itemize}
+
+
+% \noindent{\small Zhongtao Rao \hfill Curriculum Vitae}
+% \vspace{-0.4em}
+% \vspace{-0.5em}
+% \noindent\rule{\textwidth}{0.2pt}
+
+% \vspace{-0.5em}
+% \noindent\rule{\textwidth}{0.2pt}
+
+% \newpage
+% \vspace{-0.5em}
+% \noindent\rule{\textwidth}{0.2pt}
+\datedsubsection{\textbf{ByteDance}}{Apr. 2026 -- July 2026}
+\textit{Machine Learning Intern}
+\hfill Shenzhen, China
+
+Optimized feedback-controlled traffic allocation for live-stream recommendation at Douyin Live.
+
+% \textbf{Background:} Mid- and long-tail revenue-generating creators constitute a major share of the platform's supply. Many have the potential to become top creators but struggle to stream consistently because of insufficient exposure. A targeted traffic-support strategy can improve traffic-conversion efficiency, strengthen long-term streaming incentives, and drive sustainable platform revenue growth.
+
+% \textbf{Approach:}
+% \begin{itemize}
+%   \item Formulated traffic support as a constrained allocation problem by defining high-quality exposure at the 90th percentile of XTR and setting creator-level targets across retrieval, pre-ranking, and ranking.
+%   \item Estimated creator potential from live-session engagement signals to prioritize mid- and long-tail creators under a limited support-traffic budget.
+%   \item Applied PID control to the deviation between observed and target high-quality traffic to adapt support intensity, using low-latency counters as feedback to terminate support upon target attainment.
+% % \end{itemize}
+% \item Validated the allocation strategy in a two-sided online experiment, increasing average streaming days, streaming duration, and follow time windows per streamer by \textbf{0.3657\%}, \textbf{0.3806\%}, and \textbf{1.3462\%}, respectively.
+% \end{itemize}
+
+% \vspace{-0.5em}
+% \noindent\rule{\textwidth}{0.2pt}
+
+\datedsubsection{\textbf{Baidu}}{Nov. 2025 -- Mar. 2026}
+\textit{Machine Learning Intern}
+\hfill Beijing, China
+
+Conducted research on LVLM-based content retrieval for cold-start recommendation of Baidu APP.
+\vspace{-0.5em}
+% \textbf{Background:} Cold-start items lack sufficient historical interaction signals, making distribution heavily dependent on content-based priors. The existing multimodal model used a BERT--ViT two-tower architecture with separate visual and textual encoders, creating a cross-modal semantic gap that limited content understanding and retrieval quality for cold-start items.
+
+% \textbf{Approach:}
+\begin{itemize}
+  \item Derived weakly supervised positive pairs from adjacent clicks and filtered low-relevance popular items with co-occurrence scores to reduce popularity-induced noise in contrastive learning.
+%   \item Applied Qwen3-VL to titles, ASR transcripts, article text, and images to learn unified multimodal item representations and reduce the semantic mismatch of separate modality encoders.
+  \item Fine-tuning LVLMs with an in-batch contrastive objective supervised by behavioral item relations to align representation geometry with user interests and item semantics.
+%   \item Applied Matryoshka representation learning to compress 2,048-dimensional representations to 100 dimensions, reducing storage and retrieval costs while preserving retrieval quality.
+%   \item Transferred the learned LVLM representations to online I2I retrieval to complement sparse collaborative signals with content-semantic similarity for low-interaction items.
+
+\item Validated the method online, improving first-hop click-through rate by \textbf{4.97\%} and second-hop distribution volume and completion rate by \textbf{2.63\%} and \textbf{1.53\%}, while reducing the quick-swipe rate by \textbf{1.70\%}.
+\end{itemize}
+
+% \vspace{-0.5em}
+% \noindent\rule{\textwidth}{0.2pt}
+% \section{Additional Experience}
+\datedsubsection{\textbf{ByteDance}}{July 2023 -- July 2024}
+
+\textit{Full-time Software Engineer}
+\hfill Guangzhou, China
+
+Developed and maintained the cross-platform email-reading module for Android and iOS.
+
+\vspace{-0.5em}
+\noindent\rule{\textwidth}{0.2pt}
+% \section{Award}
+
+
+
+% \section{Technical Skills}
+% \textbf{Programming:} Python, C/C++, Java, Swift 
+
+% \textbf{Machine Learning:} PyTorch, PyTorch Lightning, PEFT
+
+% \textbf{Languages:} Mandarin Chinese (native), English (IELTS 7.5)
+
+\end{document}

@@ -7,107 +7,304 @@
 %\usepackage{zh_CN-Adobefonts_internal} % Simplified Chinese Support using system fonts
 \usepackage{linespacing_fix} % disable extra space before next section
 \usepackage{cite}
+\usepackage{graphicx}
+\usepackage[pdftex]{hyperref}
 
 \begin{document}
 \pagenumbering{gobble} % suppress displaying page number
 
-\name{姓名}
+\name{饶中涛}
 
 % {E-mail}{mobilephone}{homepage}
 % be careful of _ in emaill address
-\contactInfo{(+86) 123-4567-8901}{xxx@xxx.com}{Web前端研发工程师}{GitHub @hijiangtao}
-% {E-mail}{mobilephone}
-% keep the last empty braces!
-%\contactInfo{xxx@yuanbin.me}{(+86) 131-221-87xxx}{}
+\contactInfo{手机: 137-2777-2117}{邮箱: raozhongtao@gmail.com}{求职意向: 推荐算法, 大模型}{}
+
  
-\section{个人总结}
-本人在校成绩优秀、乐观向上，工作负责、自我驱动力强、热爱尝试新事物，认同开放、连接、共享的Web在未来的不可替代性。在校期间长期从事可视分析(Web的2D/3D时空可视化)相关研究，对Web技术发展趋势及前端工程化解决方案有浓厚兴趣。\textbf{现任职于 BAT 集团。}
+% \section{个人总结}
+% 27届毕业生，推荐系统相关科研/比赛经验
 
 % \section{\faGraduationCap\ 教育背景}
 \section{教育背景}
-\datedsubsection{\textbf{中国科学院大学},计算机应用技术,\textit{在读硕士研究生}}{2015.9 - 2018.6}
-\ \textbf{排名11/133(前10\%)},中国科学院大学学业奖学金(2次),IEEE Student member,预计2018年6月毕业
-\datedsubsection{\textbf{北京理工大学},软件工程,\textit{工学学士}}{2011.9 - 2015.6}
-\ \textbf{排名2/62(前5\%)},国家励志奖学金,人民奖学金(7次),科技竞赛奖(2次),北京市普通高等学校优秀毕业生,北京理工大学优秀毕业生,软件学院金牌毕业生,优秀团员/优秀学生(5次)
-\datedsubsection{\textbf{荷兰 莱顿大学},计算机科学与技术,\textit{国家留学基金委公派交换生}}{2015.3 - 2015.5}
-\ 2014年中国政府奖学金(\textit{http://www.csc.edu.cn/}),DID-ACTE项目交换生(\textit{http://did-acte.org/})
+\datedsubsection{\textbf{香港科技大学（广州）}｜数据科学与分析｜哲学硕士}{2024.08 - 2027.01}
 
-% \section{\faCogs\ IT 技能}
-\section{技术能力}
-% increase linespacing [parsep=0.5ex]
-\begin{itemize}[parsep=0.2ex]
-  \item \textbf{编程语言}: JavaScript (ECMAScript, Node.js), HTML/CSS, Python, Go, SQL, C, Shell
-  \item \textbf{操作系统,数据库与工程构建}: Linux/macOS/MySQL/MongoDB/Git/webpack/Progressive Web App
-  \item \textbf{关键词}: React/Vue.js/D3.js(SVG)/three.js(canvas, WebGL)/chrome extension/Express
-\end{itemize}
 
-% \end{itemize}
+\datedsubsection{\textbf{华南理工大学} \ ｜信息与计算科学｜理学学士}{2019.09 - 2023.06}
 
-\section{实习经历}
-\datedsubsection{\textbf{XXXX集团 | XXXXX}, 前端开发工程师}{2011-2017}
+\vspace{0.5em}
+\section{工作经历}
+
+% \datedsubsection{
+%   \raisebox{-0.2em}{
+%   \hspace{-0.7em}
+%     \includegraphics[height=1.3em]{shopee.png}
+%   }
+%   \hspace{-0.4em}
+%   \textbf{Shopee｜客户策略中心 - 内容模型组｜广告算法工程师（实习）}
+% }{2026.02 - 至今}
+% 参与Shopee内容广告pCTR/pCR精排模型的优化
+
+\datedsubsection{
+% \hspace{-0.2em}
+  \raisebox{-0.2em}{
+  \hspace{-0.6em}
+    \includegraphics[height=1.2em]{ms_logo.jpg}
+  }
+  \hspace{-0.37em}
+  \textbf{微软中国｜Microsoft AI ｜Applied Scientist（实习）}
+}{2026.07 - 至今}
+% 参与微软MSN新闻推荐多目标精排模型迭代工作，调研推荐大模型的业界落地方案
+
+\textbf{项目一}：\textbf{「基于 HyFormer 的新闻推荐精排模型升级」}
+
+\textbf{背景}：基线精排模型对序列与非序列特征的深层交互建模有限，单纯扩宽 MLP 难以有效提升模型容量，制约了精排模型的进一步 Scaling Up.
+
+\textbf{技术方案}：
 \begin{itemize}
-  \item 北京前端团队全面负责 web 应用与基础架构框架研发
-  \item 独立负责 XX 需求(React),通过HTML5 本地存储及JSBridge实现在XXX发布上线
-  \item 独立负责 chrome 插件开发,完成 XXX 等页面的开发与交叉营销的接入工作
+  \item 将基线模型基于序列池化与 Transformer 的表征方式升级为 HyFormer，采用 Full Attention 对用户行为序列进行编码，并通过构造 Global Token 与用户序列进行Cross Attention，增强长序列依赖建模能力；
+  
+  \item 设计联合 Auto-Tokenizer，将 Sparse 与 Dense 特征自适应切分为 8 个 Non-Sequential Tokens；结合 RankMixer 建模序列兴趣与非序列特征之间的高阶交互，替代基线中以直接拼接为主的特征融合方式；
+  
+  \item 将归一化 Static，HyFormer Token 及 Dense 特征共同输入 MaskNet；
 \end{itemize}
+\textbf{离线实验}：将模型从 64M 参数扩展至约 95M，冷启训练7天约40亿样本，Click AUC \textbf{+0.14\%}。
 
-\datedsubsection{\textbf{YYYY科技有限公司 | YYYYYY},数据挖掘与可视化工程师}{2005-2011}
+\textbf{项目二}：\textbf{「基于多示例学习的用户留存预估模型」}
+
+\vspace{-0.5em}
+
+\noindent\rule{\textwidth}{0.2pt}
+
+% \vspace{0.1em}
+\datedsubsection{
+  \raisebox{-0.2em}{
+  \hspace{-0.6em}
+    \includegraphics[height=1.1em]{bytedance.jpg}
+  }
+  \hspace{-0.4em}
+  \textbf{字节跳动｜抖音直播｜推荐算法工程师（实习）}
+}{2026.04 - 2026.07}
+% 参与抖音直播主播侧算法策略优化，持续优化包括开播天数，时长以及互动在内的开播体验目标
+
+\textbf{项目}：\textbf{「基于 PID 算法的营收中长尾主播流量扶持策略」}
+
+\textbf{背景}：营收中长尾主播是抖音直播平台主要的供给侧群体，包含大量具备向上跃迁至营收头部的高潜力主播，但由于流量不足难以持续开播；针对该问题，设计精准流量扶持策略，能提升流量转化效率，提升长期开播意愿，带动平台长期营收增长。
+
+\textbf{技术方案}：
 \begin{itemize}
-  \item \textbf{利用海量用户定位数据，对城市空间及人群移动特征进行研究。}第一个课题是基于香农熵和人群出行模式，构建城市网格与用户矩阵分析城市多样性/流动性分布；可视分析平台前端与可视化基于D3/Vue/Express开发，数据分析与存储采用Python/MySQL/MongoDB技术，为了均衡大数据情况下的页面可视化渲染消耗用canvas替代svg。第二个课题是对海量商场定位数据做人群分类与可视化查询，依据该系统撰写的论文被CIKM 2016(DAVA Workshop)录用，并收录于中科院软件所年会成果集
-  \item 负责数据科学部HQ LAB的可视化原型开发，主导 TalkingMind 平台系统设计与前端开发
+\item 以 XTR \textbf{90pct} 定义优质流量门槛，为中长尾营收主播设定优质流量目标，对规定时间内未达标主播在召回、粗排、精排链路进行扶持；
+\item 基于开播期间后验指标进行主播质量评估，识别高潜中长尾主播，提升有限扶持流量的资源利用效率；
+\item 将主播实际优质流量与目标流量的偏差作为控制信号，引入 \textbf{PID 控制算法}动态调节扶持强度，并结合高时效正排计数实时检测流量达标状态，及时停止已达标主播的扶持；
 \end{itemize}
 
-\datedsubsection{\textbf{北京ZZZZ信息技术有限公司 | ZZZZZZ},Web开发工程师}{2005-2005}
-\begin{itemize}
-  \item \textbf{独立负责MUSE部门的可视化组件研发。}与平台研发、设计协作完成 DeepGlint Developer 平台可视化图表组件的集成开发，符合完全定制化渲染、响应式布局与实时更新等特点
-  \item 利用 D3+Vue+WebGL(Three.js) 尝试实现三维空间的人群移动可视化
-\end{itemize}
+\textbf{线上实验}：线上双边实验中，中长尾营收主播人均开播天数 \textbf{+0.3657\%}，人均开播时长 \textbf{+0.3806\%}，人均有效关注时间片数 \textbf{+1.3462\%}。
 
-% \begin{onehalfspacing}
-% \end{onehalfspacing}
 
-% \datedsubsection{\textbf{DID-ACTE} 荷兰莱顿}{2015年}
-% \role{本科毕业设计}{LIACS 交换生}
-% 利用结巴分词对中国古文进行分词与词性标注，用已有领域知识训练形成 classifier 并对结果进行调优
-% \begin{onehalfspacing}
+% \textbf{项目}：\textbf{基于PID算法的营收中长尾主播流量扶持策略}
+
+% \textbf{背景}：营收中长尾主播是抖音直播平台主要的供给侧群体，包含大量高潜力主播，具备向上跃迁至营收头部的能力，但受限于推荐系统的流量分发机制；精准识别并扶持这部份主播，能激励开播带来开播收益，以及平台长期营收增长。
+
+% \textbf{技术方案}：
 % \begin{itemize}
-%   \item 利用结巴分词对中国古文进行分词与词性标注
-%   \item 利用已有领域知识训练形成 classifier, 并用分词结果进行测试反馈
-%   \item 尝试不同规则，对 classifier 进行调优
+% \item 定义优质流量门槛为XTR达到90pct，设定流量扶持目标，对规定时间内未获得足够优质流量的中长尾营收主播给予召回，粗排和精排链路上的扶持；
+% \item 为提高流量扶持效率，依据开播期间后验指标，识别并圈定部分优质中长尾营收主播；
+% \item 基于PID控制算法建模扶持强度，同时基于高时效正排计数，及时停止对已达标的主播流量扶持；
 % \end{itemize}
-% \end{onehalfspacing}
 
-\section{竞赛获奖/项目作品}
-% increase linespacing [parsep=0.5ex]
-\begin{itemize}[parsep=0.2ex]
-%   \item LeetCodeOJ Solutions, \textit{https://github.com/hijiangtao/LeetCodeOJ}
-  \item 第三届中国软件杯大学生软件设计大赛\textbf{全国一等奖}( \textit{http://www.cnsoftbei.com/} ),2014 年8月
-  \item 中国机器人大赛创意设计大赛\textbf{全国特等奖}( \textit{http://www.rcccaa.org/} ),2013年8月
-%   \item 中国机器人大赛暨Robocup公开赛(武术擂台赛)全国一等奖,2013年10月
-  \item 第11届北京理工大学“世纪杯”竞赛学生课外科技作品竞赛\textbf{特等奖},2013年8月
-  \item VIS Components for security system, \textit{https://hijiangtao.github.io/ss-vis-component/}
-  \item 个人博客：\textit{https://hijiangtao.github.io/}，更多作品见 \textit{https://github.com/hijiangtao}
-%   \item 电视节目"爸爸去哪儿"可视化分析展示, \textit{https://hijiangtao.github.io/variety-show-hot-spot-vis/}
+% \textbf{线上实验}：线上双边实验，中长尾营收主播人均开播天数 \textbf{+0.3657\%}，人均开播时长 \textbf{+0.3806\%}，人均有关注时间片数\textbf{+1.3462\%}。
+
+\vspace{-0.5em}
+\noindent\rule{\textwidth}{0.2pt}
+
+\datedsubsection{
+% \hspace{0.05em}
+\raisebox{-0.2em}{
+\hspace{-0.5em}
+\includegraphics[height=1.2em]{baidu.pdf}
+}
+\hspace{-0.4em}
+\textbf{百度在线｜推荐策略部｜算法工程师（实习）}
+}{2025.11 - 2026.03}
+
+% 参与百度 App 首页 Feed 流冷启动队列相关模型的迭代与优化，负责多模态内容理解及 I2I 召回链路优化。
+
+
+\textbf{项目}：\textbf{「基于 LVLM 内容理解的冷启动召回模型」}
+
+\textbf{背景}：冷启动物品缺乏充分的后验交互信号，物品分发高度依赖内容等先验信息；现有多模态模型采用 BERT+ViT 双塔结构，视觉与文本表征由独立编码器产生，存在跨模态语义空间不一致问题，限制了冷启动物品的内容理解与召回效果。
+
+\textbf{技术方案}：
+\begin{itemize}
+\item \textbf{构建弱监督图文/物品语义对比数据}：基于线上用户点击序列构造相邻物品正样本对，并利用物品共现分过滤低相关头部物品，降低热门物品噪声对对比学习的干扰；
+\item \textbf{基于 LVLM 统一建模多模态内容}：构造包含标题，视频 ASR 转写文本，图文正文及图片的多模态输入，使用 Qwen3-VL-3B 进行统一内容理解，提取隐藏状态作为物品多模态语义表征；
+\item \textbf{对比学习优化物品表征}：以用户行为构造的物品关联关系作为监督信号，引入 Batch 内对比学习对 LVLM 进行全参数微调，使物品表征更贴合线上用户兴趣与物品语义关联；
+\item \textbf{降低线上向量成本}：采用嵌套表征学习将 LVLM 生成的 2048 维高维表征压缩至 100 维，在尽可能保持召回效果的同时降低向量存储与检索成本；
+\item \textbf{落地 I2I 召回链路}：将 LVLM 物品向量接入线上 I2I 召回，以内容语义相似度补充冷启动物品的协同信号不足，提升低交互物品的召回能力；
 \end{itemize}
 
-% \section{\faHeartO\ 项目/作品摘要}
-% \section{项目/作品摘要}
-% \datedline{\textit{An Integrated Version of Security Monitor Vis System}, https://hijiangtao.github.io/ss-vis-component/ }{}
-% \datedline{\textit{Dark-Tech}, https://github.com/hijiangtao/dark-tech/ }{}
-% \datedline{\textit{融合社交网络数据挖掘的电视节目可视化分析系统}, https://hijiangtao.github.io/variety-show-hot-spot-vis/}{}
-% \datedline{\textit{LeetCodeOJ Solutions}, https://github.com/hijiangtao/LeetCodeOJ}{}
-% \datedline{\textit{Info-Vis}, https://github.com/ISCAS-VIS/infovis-ucas}{}
+\textbf{线上实验}：LVLM 向量召回接入 I2I 召回后，冷启动队列一跳点展提升 \textbf{4.97\%}，二跳分发量，完播率分别提升 \textbf{2.63\%}，\textbf{1.53\%}，快滑率降低 \textbf{1.70\%}，验证了 LVLM 内容表征对冷启动物品召回及用户消费质量的提升效果。
 
 
-% \section{\faInfo\ 社会实践/其他}
-\section{社区参与/实践其他}
-% increase linespacing [parsep=0.5ex]
-\begin{itemize}[parsep=0.2ex]
-  \item 乐于参与开源社区讨论,\textbf{参与翻译 Vue.js, webpack, WebAssembly, Babel 文档，印记中文成员}
-  \item 中国科学院大学2016秋季学期可视化与可视分析课程助教，\textit{http://vis.ios.ac.cn/infovis-ucas/}
-  \item 未来论坛学生会成员、北理社联新闻信息中心主任、北理工软件学院学生会宣传部副部长(2012-2016)
-  \item 2013-2015 北京市共青团“温暖衣冬”志愿者,第九届园博会志愿者,2014 FLL机器人世锦赛志愿者
+
+% \datedsubsection{
+% % \hspace{0.05em}
+%   \raisebox{-0.2em}{
+%   \hspace{-0.5em}
+%     \includegraphics[height=1.2em]{baidu.pdf}
+%   }
+%   \hspace{-0.4em}
+%   \textbf{百度在线｜推荐策略部｜推荐算法工程师（实习）}
+% }{2025.11 - 2026.02}
+% 参与百度App首页Feed流冷启动队列相关模型的迭代与优化
+
+% \textbf{项目}：\textbf{基于MLLM内容理解的冷启动模型}
+
+% \textbf{背景}：由于后验数据稀疏，冷启动物品的分发通常高度依赖多模态等先验信号，现有的多模态模型采用双塔编码结构（BERT+ViT），模态表征间存在明显的语义间隔
+
+% \textbf{方案}：
+% \begin{itemize}
+%     \item 基于线上用户的点击序列，构造相邻物品作为正样本对，同时通过计算共现分过滤低相关性的头部物品
+%     \item 构造物品文本（标题，视频asr转文本，图文正文）及图片样本，输入Qwen3-VL-3B模型
+%     \item 通过提取MLLM的隐藏状态作为物品多模态表征，并采用batch内对比学习全参数微调
+%     \item 采用嵌套表征学习降低多模态表征维度，从2048维降低到100维，兼顾了性能与存储，检索成本
+% \end{itemize}
+% \textbf{线上实验}：
+% 在I2I召回中使用MLLM向量召回相关物品，冷启队列一跳点展比提升\textbf{4.97\%}，二跳分发量，完播率分别提升\textbf{2.63\%}，\textbf{1.53\%}，快滑率降低\textbf{1.7\%}
+
+
+% \textbf{「冷启物品潜力多目标预估模型」}
+% \begin{itemize}
+%     \item xx
+% \end{itemize}
+\vspace{-0.5em}
+\noindent\rule{\textwidth}{0.2pt}
+\datedsubsection{
+  \raisebox{-0.2em}{
+  \hspace{-0.6em}
+    \includegraphics[height=1.1em]{bytedance.jpg}
+  }
+  \hspace{-0.4em}
+  \textbf{字节跳动｜飞书邮箱｜客户端开发工程师（全职）}
+}{2023.07 - 2024.07}
+
+\textbf{职责}：负责跨平台（Android \& iOS）邮件阅读模块的需求开发与日常维护，持续优化用户体验。
+% 飞书办公套件，负责跨平台（Android \& iOS）邮件阅读模块的需求开发与日常维护，持续优化用户体验
+% \begin{itemize}
+%     \item{负责跨平台（Android \& iOS）邮件阅读模块的需求开发与日常维护，优化用户体验。}
+%     \item{通过引入复用与缓存机制对ViewPager进行升级，大幅提升Android端滑动浏览邮件的流畅性。}
+%     \item{迁移全局单例服务至用户态容器，提升Android端用户态安全分（0.15 -> 4.13），使飞书邮箱在所有模块中排名第一。}
+
+%     \item{负责飞书海外版（Lark）的俄语适配工作，提升俄语用户的使用体验。}
+%     \item{开发Android端支持第三方接入的在线与离线通知模块。}
+% \end{itemize}
+
+% \datedsubsection{\textbf{字节跳动}|飞书, 移动端开发实习生}{2022.4 - 2023.3}
+
+
+
+\vspace{0.5em}
+\section{在校经历}
+
+\datedsubsection{\textbf{面向多模态推荐的视觉语言大模型表征后训练方法｜SIGIR 2026 一作}}{}
+% \textbf{\textit{Accepted to SIGIR 2026}}
+% \textit{SIGIR 2026}
+
+% \textbf{研究背景}: 
+% 传统多模态推荐系统通常使用独立的模态编码器分别提取物品文本及图像表征，其内在差异（训练目标，语义空间）会给推荐系统引入噪声;
+% 多模态大语言模型（MLLM）具有优秀的跨模态对齐能力，同时蕴含丰富的世界知识，用其作为推荐系统物品内容理解基座以增强推荐系统的性能是热门的研究方向之一
+
+% \textbf{研究方法}:
+% \begin{itemize}
+% \item 构造物品属性文本，
+% \item 对LVLM的最后一层隐藏状态进行平均池化后，用作物品模态表征
+% \item 对LVLM进行图文对比学习，使模型具备识别物品的能力
+% \item 设计模态感知的LoRA对模型进行微调，优化目标是最小化物品的图文表征间的对比学习损失
+% \end{itemize}
+% \textbf{实验结果}: 使用Qwen2.5-VL 7B和LLaMA-3.2 11B Vision进行了多轮对比实验，在Amazon Beauty，Sports，Toys上的命中率平均提升8.3\%，归一化折损累计增益（NDCG）平均提升10.4\%; 在长尾物品集中，命中率和NDCG分别提升74\%，95\%
+\textbf{研究背景}：针对传统多模态推荐中独立模态编码器存在语义空间不一致，跨模态融合噪声等问题，探索利用视觉语言大模型（LVLM）的跨模态对齐能力构建统一物品语义表征，并将通用视觉语言知识迁移至推荐场景。
+
+\textbf{研究方法}：
+\begin{itemize}
+\item 构造包含物品名称，类别及属性的结构化文本，将图像与文本输入LVLM，通过隐藏状态平均池化构建物品的图文表征；
+\item 设计物品级图文对比学习，使 LVLM 从通用视觉语言理解能力进一步适配物品识别任务；利用 Batch 内物品间的相似关系构造软标签，引入结构感知对比学习以保持物品语义空间中的局部结构；
+\item 提出\textit{Modality-Aware Mixture-of-Experts LoRA}，将 LoRA 参数划分为多个模态专家并进行模态感知路由，缓解训练中的梯度冲突现象，实现 LVLM 的参数模态特定适配；
+\item 将学习得到的 LVLM 物品表征通过MLP初始化ID Embedding进行序列推荐任务训练；通过 backbone 对比，模块消融及长尾物品实验验证方法有效性；
 \end{itemize}
+
+\textbf{实验结果}：在 \textit{Amazon Beauty}, \textit{Sports}, \textit{Toys} 等真实数据集上进行多组实验，\textit{Qwen2.5-VL 7B} 与 \textit{LLaMA-3.2 11B Vision} 均取得稳定收益；\textit{Hit@10} 平均提升 8.3\%, \textit{NDCG@10} 平均提升 10.4\%，长尾物品集合上 \textit{Hit@10}, \textit{NDCG@10} 分别提升 74\%, 95\%。
+
+
+% \datedsubsection{\textbf{2. 2025腾讯广告算法大赛}}{}
+% % 构建序列推荐系统，基于用户历史交互序列预测下一个可能点击的广告创意，成绩排名前25\%
+
+% \textbf{特征工程}: 提取多种时间特征（如活跃间隔，时间衰减，小时，星期等），提升模型对用户时序行为的理解；提取物品的交互类型特征（曝光/点击），鼓励模型学习不同交互类型对下一个物品的影响；使用SENet对物品及用户特征做变换，鼓励模型学习不同特征对推荐性能的贡献
+
+
+% \textbf{采样策略}: 基于物品流行度进行非均匀负采样，相较于均匀随机负采样，提升了模型对热门物品的区分能力；使用Alias Method实现高效采样
+
+% \textbf{模型与训练}:
+% 基于Transformer结构建模用户历史行为序列，使用旋转位置编码（RoPE）提升相对位置的感知能力，同时减少训练参数；构造InfoNCE损失，通过最大化正样本相似度，最小化负样本相似度提升表征质量；对检索结果进行曝光过滤，使用Bloom Filter优化过滤时间和空间复杂度
+
+
+% \datedsubsection{\textbf{基于LLM的多模态生成式推荐}}{}
+% \textbf{研究背景}: 在LLM4Rec中，如何将大语言模型（LLM）的世界知识与协同信息融合，已经是推荐系统中的前沿研究问题。
+
+% \textbf{研究方法}:
+% \begin{itemize}
+% \item 使用LLM Tokenizer对物品文本信息进行编码，使用SASRec模型训练用户历史物品的ID embedding，并通过CLIP对物品图像进行编码。
+% \item 分别将ID embedding和图像embedding输入到两个可训练的全连接层，将其映射到LLM的Token空间。
+% \item 将用户物品序列的embedding和候选物品（包括1个Ground Truth和19个负样本）输入LLM，直接输出推荐结果。
+% \item 使用LoRA对LLaMA-3.1-8B模型进行Fine-tuning，结合课程学习提升训练效果。
+% \item 在8卡4090显卡上使用Deepspeed ZeRO Stage 3进行训练。
+% \end{itemize}
+% \textbf{结果}: 在Amazon Review，Steam等数据集上相比传统序列建模方法如SASRec提升约20\%。
+
+\section{科研论文}
+\begin{itemize}
+  \item \textbf{Z. Rao}, P. Zhou, D. Chong, Z. Chen, S. Wang, N. Tang. 2026. Structural and Disentangled Adaptation of Large Vision Language Models for Multimodal Recommendation. 
+  % Accepted by SIGIR 2026
+   In \textit{Proceedings of the 49th International ACM SIGIR Conference on Research and Development in Information Retrieval (SIGIR '26)} 
+   (\textbf{CCF-A}).
+   % \href{https://arxiv.org/abs/2512.06883}{arXiv:2512.06883}.
+  
+\item P. Zhou, C. Liu, J. Ren, X. Zhou, Y. Xie, M. Cao, \textbf{Z. Rao}, Y.-L. Huang, D. Chong, J. Liu, J. B. Kim, S. Wang, R. C.-W. Wong, S. Kim. 2025. When Large Vision Language Models Meet Multimodal Sequential Recommendation: An Empirical Study. In \textit{Proceedings of the ACM on Web Conference 2025 (WWW '25)} (\textbf{CCF-A, Oral}).
+
+  % \item \textbf{Z. Rao}, P. Zhou, D. Chong, Z. Chen, S. Wang, N. Tang. 
+  % Structural and Disentangled Adaptation of Large Vision Language Models for Multimodal Recommendation. SIGIR 2026 (\textbf{CCF-A, First Author}).
+  
+% \item P. Zhou, C. Liu, J. Ren, X. Zhou, Y. Xie, M. Cao, \textbf{Z. Rao}, Y.-L. Huang, D. Chong, J. Liu, J. B. Kim, S. Wang, R. C.-W. Wong, S. Kim. WWW 2025(\textbf{CCF-A, Oral}).
+
+\end{itemize}
+% \datedsubsection{\textbf{\textit{When Large Vision Language Models Meet Multimodal Sequential Recommendation: An Empirical Study}}  {\textit{WWW' 25 Oral} (CCF-A)}}{} 
+% \textit{Peilin Zhou, Chao Liu, Jing Ren, Xinfeng Zhou, Yueqi XIE, Meng Cao, \textbf{Zhongtao Rao}, You-Liang Huang, Dading Chong, Junling Liu, Jae Boum KIM, Shoujin Wang, Raymond Chi-Wing Wong, Sunghun Kim}
+
+% \datedsubsection{\textbf{[\textit{WWW 2025 Oral}] \textit{When Large Vision Language Models Meet Multimodal Sequential Recommendation: An Empirical Study}}}{}
+% \textit{Peilin Zhou, Chao Liu, Jing Ren, Xinfeng Zhou, Yueqi XIE, Meng Cao, \textbf{Zhongtao Rao}, You-Liang Huang, Dading Chong, Junling Liu, Jae Boum KIM, Shoujin Wang, Raymond Chi-Wing Wong, Sunghun Kim}
+% \end{itemize}
+
+
+% \section{\faCogs\ 专业技能}
+% \section{专业技能}
+% % increase linespacing [parsep=0.5ex]
+% \begin{itemize}[parsep=0.2ex]
+% \item{\textbf{编程语言}：Python, C/C++, Swift, Java}
+% \item{\textbf{深度学习框架}：PyTorch-Lightning, PyTorch, PEFT}
+% \item{\textbf{推荐系统}：协同过滤, DIN, Wide\&Deep, SASRec}
+% \item{\textbf{计算机基础}：操作系统，计算机网络，数据结构}
+% \item{\textbf{移动端技术}：Hybrid开发（JS Bridge），iOS (UIKit, RxSwift)，Android (RxJava, ButterKnife)}
+% \item{\textbf{英文水平}：雅思7.5}
+% \end{itemize}
+
+% \textbf{编程语言}：Python, C/C++, Swift, Java等
+
+% \textbf{深度学习框架}：PyTorch-Lightning, PyTorch 
+
+% \textbf{推荐系统}：协同过滤，DIN， Wide\&Deep, SASRec等 
+
+% \textbf{计算机基础}：操作系统，计算机网络，数据结构等 
+
+% \textbf{移动端技术}：Hybrid开发（JS Bridge），iOS (UIKit, RxSwift)，Android (RxJava, ButterKnife) 
+
+% \textbf{外语水平}：IELTS 7.5
 
 %% Reference
 %\newpage

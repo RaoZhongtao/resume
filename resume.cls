@@ -27,10 +27,10 @@
 
 \RequirePackage[
 	a4paper,
-	left=0.7in,
-	right=0.7in,
-	top=0.50in,
-	bottom=0.5in,
+	left=0.5in,
+	right=0.5in,
+	top=0.40in,
+	bottom=0.4in,
 	nohead
 ]{geometry}
 
@@ -71,14 +71,26 @@
   \vspace{1.2ex}
 }
 
+% \newcommand{\contactInfo}[4]{
+%   \centerline{\sffamily\large{\ {#1} \textperiodcentered\ \ {#2}}
+%     \ifthenelse{\isempty{#3}}%
+%       { } % if {#3} is empty
+%       {\textperiodcentered\ \ {#3} } % homepage, no space before \text...
+%     \ifthenelse{\isempty{#4}}%
+%       { } % if {#3} is empty
+%       {\textperiodcentered\ \ {#4} }
+%   }
+%   \vspace{0.7ex}
+% }
+
 \newcommand{\contactInfo}[4]{
-  \centerline{\sffamily\large{\ {#1} \textperiodcentered\ \ {#2}}
+  \centerline{\sffamily\large{\ {#1} ｜\ \ {#2}}
     \ifthenelse{\isempty{#3}}%
       { } % if {#3} is empty
-      {\textperiodcentered\ \ {#3} } % homepage, no space before \text...
+      {｜\ \ {#3} } % homepage, no space before \text...
     \ifthenelse{\isempty{#4}}%
       { } % if {#3} is empty
-      {\textperiodcentered\ \ {#4} }
+      {｜\ \ {#4} }
   }
   \vspace{0.7ex}
 }

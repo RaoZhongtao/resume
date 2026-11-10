@@ -1,0 +1,164 @@
+% !TEX TS-program = xelatex
+% !TEX encoding = UTF-8 Unicode
+
+\documentclass{resume}
+
+\usepackage{zh_CN-Adobefonts_external}
+\usepackage{linespacing_fix}
+\usepackage{cite}
+\usepackage{graphicx}
+\usepackage{hyperref}
+
+\begin{document}
+\pagenumbering{gobble}
+
+\name{Zhongtao Rao}
+
+\contactInfo
+{raozhongtao@gmail.com}
+{https://raozhongtao.github.io/}
+
+
+% ============================================================
+\section{Research Interests}
+
+Large Recommendation Models, Recommendation Model Scaling,
+User Behavior and Sequence Modeling, and Representation Learning.
+
+% ============================================================
+\section{Education}
+
+\datedsubsection{
+\textbf{Hong Kong University of Science and Technology (Guangzhou)}
+
+$\mid$ M.Phil. in Data Science and Analytics
+}{Aug. 2024 -- Jan. 2027 (Expected)}
+
+\textbf{Research Advisor}: Prof. Nan Tang
+
+\vspace{0.3em}
+
+\datedsubsection{
+\textbf{South China University of Technology}
+
+$\mid$ B.Sc. in Information and Computing Science
+}{Sep. 2019 -- Jun. 2023}
+
+% ============================================================
+\section{Publications}
+
+\begin{itemize}
+
+\item
+\textbf{Zhongtao Rao}, Peilin Zhou, Dading Chong, Zihan Chen,
+Shoujin Wang, Nan Tang.
+\textit{Structural and Disentangled Adaptation of Large Vision Language Models
+for Multimodal Recommendation}.
+In Proceedings of the 49th International ACM SIGIR Conference on Research and
+Development in Information Retrieval (\textbf{SIGIR 2026}).
+\href{https://arxiv.org/abs/2512.06883}{[arXiv]}
+
+\item
+Peilin Zhou, Chao Liu, Jing Ren, Xinfeng Zhou, Yueqi Xie, Meng Cao,
+\textbf{Zhongtao Rao}, You-Liang Huang, Dading Chong, Junling Liu,
+Jae Boum Kim, Shoujin Wang, Raymond Chi-Wing Wong, Sunghun Kim.
+\textit{When Large Vision Language Models Meet Multimodal Sequential
+Recommendation: An Empirical Study}.
+In Proceedings of the ACM Web Conference 2025
+(\textbf{WWW 2025, Oral}).
+
+\end{itemize}
+
+% ============================================================
+\section{Industry Research Experience}
+
+% ---------------- Microsoft ----------------
+\datedsubsection{
+\textbf{Microsoft China $\mid$ Microsoft AI $\mid$ Applied Scientist Intern}
+}{Jul. 2026 -- Present}
+
+\textbf{Project: HyFormer-based Large Recommendation Model for News Ranking}
+
+\begin{itemize}
+
+\item
+Investigated the scaling bottleneck of a production-scale news ranking model,
+where simply widening conventional MLP-based architectures provided limited
+returns due to insufficient modeling of long user behavior sequences and
+interactions among heterogeneous features.
+
+\item
+Upgraded the ranking model to the \textbf{HyFormer} paradigm:
+modeled user behavior sequences with full attention, introduced global tokens
+with cross-attention for sequence aggregation, and jointly tokenized sparse and
+dense non-sequential features to enable token-level interactions between
+behavioral interests and contextual signals.
+
+\item
+Integrated sequence representations, non-sequential tokens, and dense features
+into a unified interaction architecture with RankMixer and MaskNet, enabling
+richer high-order feature interactions beyond conventional feature
+concatenation and MLP scaling.
+
+\item
+Scaled the model from approximately \textbf{64M to 95M parameters} and trained
+from cold start on approximately \textbf{4 billion samples over seven days},
+achieving \textbf{+0.09\% AUC Like}, \textbf{+0.185\% RecirDwell}, and
+\textbf{+0.057\% Click} in offline evaluation.
+
+\end{itemize}
+
+\vspace{-0.3em}
+\noindent\rule{\textwidth}{0.2pt}
+
+% ---------------- Baidu ----------------
+\datedsubsection{
+\textbf{Baidu $\mid$ Recommendation Strategy Department $\mid$ Algorithm Intern}
+}{Nov. 2025 -- Mar. 2026}
+
+\begin{itemize}
+
+\item
+Post-trained \textbf{Qwen3-VL-3B} with behavior-derived item-item supervision
+and in-batch contrastive learning to align multimodal content representations
+with user interaction signals for cold-start recommendation.
+
+\item
+Compressed 2048-dimensional representations to 100 dimensions and deployed
+them in an online I2I retrieval pipeline, improving cold-start first-hop CTR
+by \textbf{4.97\%}.
+
+\end{itemize}
+
+\vspace{-0.3em}
+\noindent\rule{\textwidth}{0.2pt}
+
+% ---------------- ByteDance Douyin ----------------
+\datedsubsection{
+\textbf{ByteDance $\mid$ Douyin Live $\mid$ Recommendation Algorithm Intern}
+}{Apr. 2026 -- Jul. 2026}
+
+\begin{itemize}
+
+\item
+Designed a \textbf{PID-based adaptive traffic allocation mechanism} for
+high-potential long-tail creators across retrieval and ranking stages.
+
+\item
+Combined posterior creator-quality signals with real-time exposure statistics;
+online experiments improved creator activity and engagement metrics.
+
+\end{itemize}
+
+% ============================================================
+\section{Industry Experience}
+
+\datedsubsection{
+\textbf{ByteDance $\mid$ Feishu/Lark Mail $\mid$ Software Engineer}
+}{Jul. 2023 -- Jul. 2024}
+
+Developed and maintained cross-platform Android and iOS infrastructure for
+the email reading module.
+
+\end{document}
+
