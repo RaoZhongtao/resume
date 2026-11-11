@@ -82,6 +82,23 @@
 \end{projectbody}
 
 \projectheading{项目二}{基于多示例学习的用户留存预估模型}
+\begin{projectbody}
+
+\item \textbf{背景}：新闻推荐中的点击、时长等短期反馈难以充分反映用户后续回访意愿，而留存信号属于请求级反馈，难以直接归因到单条新闻；基于多示例学习（MIL）建模请求内新闻与后续回访的关联，为推荐排序补充留存预估信号。
+
+\item \textbf{技术方案}：
+\begin{itemize}[label=\textbullet, labelsep=0.5em]
+  \item \textbf{构建双目标留存监督}：以当前请求所在会话结束为起点，构建未来 24 小时有效回访会话数（SSNext24h）及首次有效回访时间的指数衰减权重（NSSGT），将会话数映射为软标签，联合建模回访频次与及时性；
+
+  \item \textbf{请求级多示例学习}：将同一用户单次请求内的曝光新闻组成 Bag，以 128 维用户向量及 24 维上下文特征作为 Query，新闻及交叉特征作为 Key，通过请求内 Softmax 注意力加权聚合物品 Logit，使用请求级 BCE 联合训练共享底座与双任务头，缓解将请求标签直接赋予单条新闻带来的监督噪声；
+
+  \item \textbf{用户倾向建模}：基于用户向量与上下文构建独立用户塔，输出双任务偏置并与物品 Logit 相加，显式建模用户基础回访倾向，缓解用户活跃度差异对内容价值学习的干扰；
+
+  \item \textbf{训练与推理落地}：基于 Spark 按用户及请求重分片，保证请求内样本在分片与训练批次中的完整性，并通过向量化聚合实现变长 Bag 训练；导出支持逐物品独立打分的 ONNX 模型，接入 Azure ML 日更训练与离线评估流水线；
+\end{itemize}
+
+\item \textbf{离线实验}：相较基线，SSNext24h AUC \textbf{[待填写]}，NSSGT AUC \textbf{[待填写]}。
+\end{projectbody}
 
 \vspace{-0.5em}
 
