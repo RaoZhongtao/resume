@@ -5,7 +5,16 @@
 \usepackage{linespacing_fix}
 \usepackage[hidelinks,pageanchor=false]{hyperref}
 
+\setmainfont[
+  Extension = .otf,
+  UprightFont = *-Regular,
+  BoldFont = *-Bold,
+  ItalicFont = *-Italic,
+  BoldItalicFont = *-BoldItalic
+]{LibertinusSerif}
+
 \setlist[itemize]{itemsep=0.15em}
+\setlength{\emergencystretch}{1em}
 
 \hypersetup{
   pdftitle={Zhongtao Rao - Machine Learning Engineer},
@@ -13,7 +22,7 @@
 }
 
 \renewcommand{\contactInfo}[4]{%
-  \centerline{\sffamily\normalsize
+  \centerline{\rmfamily\normalsize
     #1 \quad\textperiodcentered\quad #2%
     \ifthenelse{\isempty{#3}}{}{\quad\textperiodcentered\quad #3}%
     \ifthenelse{\isempty{#4}}{}{\quad\textperiodcentered\quad #4}%
