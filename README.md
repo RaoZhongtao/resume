@@ -58,6 +58,24 @@ BasicTeX 是精简发行版，需要补齐模板依赖。已有 `xeCJK`、`xltxt
 不显示圆点；技术方案的嵌套列表使用 `[label=\textbullet, labelsep=0.5em]`，
 显示与在校经历相同的默认圆点和间距，并保留项目之间的留白。
 
+### 英文求职 CV
+
+[resume-en.tex](./resume-en.tex) 面向欧洲及新加坡的 Machine Learning Engineer
+岗位，以中文简历的有效正文为内容基准，采用两页 A4 单栏布局。内容包含个人简介、
+教育背景、技术技能、倒序工作经历、研究经历及论文；实习成果区分离线评估与线上实验，
+预印本与投稿状态不作为已录用论文展示。第二页在百度经历前显式分页，修改内容后应
+重新检查页数及分页位置。英文版本不使用公司图标或 CCF 分类。
+
+使用 XeLaTeX 编译，输出到 `build/`：
+
+```powershell
+New-Item -ItemType Directory -Force build
+xelatex -interaction=nonstopmode -halt-on-error -output-directory=build resume-en.tex
+```
+
+英文版本中的 AUC 相对增幅、Successful Session 释义、Qwen3-VL-2B 型号及技能列表
+已由本人确认；后续同步中文原稿时应保留这些核实结果，而不是直接覆盖。
+
 如果确定只需要中文简历的话单独克隆 `master` 分支即可, 需要注意的是该分支包含 Adobe 的宋楷黑仿四套中文字体，压缩包约为37MB。[下载地址](https://github.com/hijiangtao/resume/releases)
 
 ```

@@ -3,12 +3,15 @@
 
 \documentclass{resume}
 \usepackage{linespacing_fix}
-\usepackage{cite}
-\usepackage{graphicx}
-\usepackage{hyperref}
+\usepackage[hidelinks,pageanchor=false]{hyperref}
 
-% Use English-friendly separators in the contact line. The class's default
-% separator is a full-width Chinese punctuation mark.
+\setlist[itemize]{itemsep=0.15em}
+
+\hypersetup{
+  pdftitle={Zhongtao Rao - Machine Learning Engineer},
+  pdfauthor={Zhongtao Rao}
+}
+
 \renewcommand{\contactInfo}[4]{%
   \centerline{\sffamily\normalsize
     #1 \quad\textperiodcentered\quad #2%
@@ -22,126 +25,99 @@
 \pagenumbering{gobble}
 
 \name{Zhongtao Rao}
+\centerline{\large Machine Learning Engineer | Recommender Systems \& Multimodal ML}
+\vspace{0.7ex}
+\contactInfo{\href{mailto:raozhongtao@gmail.com}{raozhongtao@gmail.com}}{+86 137 2777 2117}{}{}
 
-\contactInfo{Phone: +86 137-2777-2117}{raozhongtao@gmail.com}{Focus: Recommender Systems \& LLMs}{}
+\section{Profile}
+Machine learning engineer specialising in recommender systems and multimodal representation learning, with experience in large-scale ranking, retrieval, user retention modelling and production software engineering. First author of a SIGIR 2026 paper; MPhil candidate graduating in January 2027.
 
 \section{Education}
-\datedsubsection{\textbf{The Hong Kong University of Science and Technology}}{Aug. 2024 -- Jan. 2027}
-M.Phil. in Data Science and Analytics
+\textbf{The Hong Kong University of Science and Technology (Guangzhou)}
+\datedline{MPhil in Data Science and Analytics}{Aug 2024 -- Jan 2027 (expected)}
+\vspace{0.4em}
+\textbf{South China University of Technology}
+\datedline{BSc in Information and Computing Science}{Sep 2019 -- Jun 2023}
 
-\datedsubsection{\textbf{South China University of Technology}}{Sept. 2019 -- June 2023}
-B.S. in Information and Computing Science
+\section{Technical Skills}
+\textbf{Languages:} Python, C/C++, Java, Swift\\
+\textbf{ML frameworks \& deployment:} PyTorch, PEFT, ONNX\\
+\textbf{Specialisms:} Recommendation ranking and retrieval, sequential recommendation, multimodal representation learning, contrastive learning, LoRA, multi-task learning, online experimentation
 
-\vspace{0.5em}
 \section{Professional Experience}
+\datedline{\textbf{Microsoft}}{Jul 2026 -- Present}
+\textit{Applied Scientist Intern, Microsoft AI}
 
-\datedsubsection{
-  \raisebox{-0.2em}{
-    \hspace{-0.6em}
-    \includegraphics[height=1.2em]{ms_logo.jpg}
-  }
-  \hspace{-0.37em}
-  \textbf{Microsoft | Applied Scientist Intern}
-}{July 2026 -- Present}
-
-\textbf{Project: \textit{Upgrading a News-Ranking Model with HyFormer}}
-
-\textbf{Context:} The baseline ranking model had limited capacity to capture deep interactions between sequential and non-sequential features. Simply widening its MLP yielded diminishing returns, constraining further model scaling.
-
-\textbf{Approach:}
+\vspace{0.3em}
+\textbf{News ranking: model scaling and feature interactions}
 \begin{itemize}
-  \item Replaced the baseline's sequence-pooling and Transformer representation pipeline with HyFormer: encoded user behavior sequences using full attention and introduced a global token that cross-attends to the sequence, improving long-range dependency modeling;
-  \item Designed a unified auto-tokenizer that adaptively partitions sparse and dense features into eight non-sequential tokens; used RankMixer to model higher-order interactions between sequential interests and non-sequential features, replacing the baseline's predominantly concatenation-based feature fusion;
-  \item Jointly fed normalized static features, HyFormer tokens, and dense features into MaskNet;
+  \item Improved offline click AUC by \textbf{0.14\% relative to the baseline} by scaling a news-ranking model from 64M to approximately 95M parameters; trained from scratch on approximately \textbf{4 billion examples} over seven days.
+  \item Replaced sequence pooling and the existing Transformer representation pipeline with HyFormer, using full self-attention over user behaviour sequences and a global token that cross-attends to the sequence.
+  \item Designed a joint tokenizer to map sparse and dense features into eight non-sequential tokens; combined RankMixer feature interactions with MaskNet feature weighting and multi-task prediction heads.
 \end{itemize}
-\textbf{Offline Results:} Scaled the model from 64M to approximately 95M parameters and trained it from scratch for seven days on approximately 4B samples, improving AUC by \textbf{0.09\%} for Like, \textbf{0.185\%} for RecirDwell, and \textbf{0.057\%} for Click.
 
-\vspace{-0.5em}
-\noindent\rule{\textwidth}{0.2pt}
-
-\datedsubsection{
-  \raisebox{-0.2em}{
-    \hspace{-0.6em}
-    \includegraphics[height=1.1em]{bytedance.jpg}
-  }
-  \hspace{-0.4em}
-  \textbf{ByteDance | Machine Learning Intern}
-}{Apr. 2026 -- July 2026}
-
-\textbf{Project: \textit{PID-Controlled Traffic Support for Mid- and Long-Tail Revenue-Generating Creators}}
-
-\textbf{Context:} Mid- and long-tail revenue-generating creators constitute a major share of the platform's supply. Many have the potential to become top creators but struggle to stream consistently because of insufficient exposure. A targeted traffic-support strategy can improve traffic-conversion efficiency, strengthen long-term streaming incentives, and drive sustainable platform revenue growth.
-
-\textbf{Approach:}
+\textbf{User retention prediction with multiple instance learning}
 \begin{itemize}
-  \item Defined high-quality traffic using the 90th percentile of XTR, set traffic targets for eligible creators, and boosted creators who fell short within a specified window across retrieval, pre-ranking, and ranking stages;
-  \item Evaluated creator quality using observed engagement metrics from live sessions, identifying high-potential creators and improving the efficiency of limited support traffic;
-  \item Used the gap between actual and target high-quality traffic as the control signal for a \textbf{PID controller} that dynamically adjusted support intensity; combined it with low-latency serving-side counters to detect target attainment in real time and promptly stop support once a creator reached the target;
+  \item Developed a request-level multiple instance learning (MIL) model to learn article-level retention signals without assigning the same noisy request-level label to every article. Jointly predicted successful-session frequency over the next 24 hours and an exponentially decayed time-to-return target.
+  \item Used user and context features to attend over article logits within each request; added a separate user tower to account for baseline return propensity and reduce the effect of user activity differences on learned content value.
+  \item Exported an ONNX model for independent scoring of candidate articles and integrated retention predictions into ranking. Achieved offline AUCs of \textbf{0.8387} and \textbf{0.8064} for the frequency and time-to-return targets, respectively.
+  \item Online experiments increased \textbf{successful sessions per user by 1.28\%}, time spent per user by \textbf{1.24\%}, and monetised content views per user by \textbf{1.06\%}.
 \end{itemize}
-\textbf{Online Results:} In a two-sided online experiment, increased average streaming days per creator by \textbf{0.3657\%}, average streaming duration per creator by \textbf{0.3806\%}, and average qualified-follow time windows per creator by \textbf{1.3462\%}.
 
-\vspace{-0.5em}
-\noindent\rule{\textwidth}{0.2pt}
-
-\datedsubsection{
-  \raisebox{-0.2em}{
-    \hspace{-0.5em}
-    \includegraphics[height=1.2em]{baidu.pdf}
-  }
-  \hspace{-0.4em}
-  \textbf{Baidu | Machine Learning Intern}
-}{Nov. 2025 -- Mar. 2026}
-
-\textbf{Project: \textit{Cold-Start Retrieval through LVLM-Based Content Understanding}}
-
-\textbf{Context:} Cold-start items lack sufficient historical interaction signals, making distribution heavily dependent on content-based priors. The existing multimodal model used a BERT--ViT two-tower architecture with separate visual and textual encoders, creating a cross-modal semantic gap that limited content understanding and retrieval quality for cold-start items.
-
-\textbf{Approach:}
+\vspace{0.4em}
+\datedline{\textbf{ByteDance}}{Apr 2026 -- Jul 2026}
+\textit{Machine Learning Engineer Intern, Douyin Live}
 \begin{itemize}
-  \item \textbf{Built weakly supervised image--text and item-semantic contrastive data:} constructed positive pairs from adjacent items in online click sequences and filtered low-relevance popular items using item co-occurrence scores, reducing popularity-induced noise in contrastive learning;
-  \item \textbf{Unified multimodal content modeling with an LVLM:} created multimodal inputs comprising titles, video ASR transcripts, article text, and images; used Qwen3-VL-3B for unified content understanding and extracted hidden states as multimodal item representations;
-  \item \textbf{Optimized item representations through contrastive learning:} treated behavior-derived item relationships as supervision and fully fine-tuned the LVLM with in-batch contrastive learning, aligning representations with user interests and semantic item relationships observed online;
-  \item \textbf{Reduced online vector costs:} applied Matryoshka representation learning to compress 2,048-dimensional LVLM representations to 100 dimensions, lowering storage and retrieval costs while preserving retrieval quality;
-  \item \textbf{Deployed to the item-to-item retrieval pipeline:} integrated LVLM item embeddings into online I2I retrieval, supplementing sparse collaborative signals with content-semantic similarity and improving retrieval for low-interaction items;
+  \item Developed a traffic allocation strategy for mid- and long-tail revenue-generating livestream creators, setting high-quality traffic targets and applying targeted boosts across retrieval, pre-ranking and ranking.
+  \item Identified high-potential creators using observed livestream engagement. Used a proportional--integral--derivative (PID) controller to adjust boosts based on the gap between actual and target traffic, with low-latency serving counters to stop boosts when targets were met.
+  \item In a two-sided online experiment, increased streaming days per creator by \textbf{0.3657\%} and streaming duration per creator by \textbf{0.3806\%}.
 \end{itemize}
-\textbf{Online Results:} After integrating LVLM vector retrieval into the I2I pipeline, improved first-hop click-through rate in the cold-start queue by \textbf{4.97\%}; increased second-hop distribution volume and completion rate by \textbf{2.63\%} and \textbf{1.53\%}, respectively; and reduced the quick-swipe rate by \textbf{1.70\%}.
 
-\vspace{-0.5em}
-\noindent\rule{\textwidth}{0.2pt}
+\newpage
+\section{Professional Experience (continued)}
+\datedline{\textbf{Baidu}}{Nov 2025 -- Mar 2026}
+\textit{Machine Learning Engineer Intern, Recommendation Strategy}
+\begin{itemize}
+  \item Built and deployed vision-language model embeddings for cold-start item-to-item (I2I) retrieval, addressing sparse interaction data and the semantic mismatch between separate BERT text and ViT image encoders.
+  \item Constructed positive item pairs from adjacent clicks in user sequences and filtered weakly related popular items using co-occurrence scores to reduce popularity-driven noise.
+  \item Fully fine-tuned \textbf{Qwen3-VL-2B} with in-batch contrastive learning on titles, speech transcripts, article text and images. Applied Matryoshka representation learning to reduce embedding dimensionality from \textbf{2,048 to 100}, lowering vector storage and retrieval costs.
+  \item Online experiments on the cold-start feed increased first-hop click-through rate by \textbf{4.97\%}, second-hop distribution volume by \textbf{2.63\%} and completion rate by \textbf{1.53\%}, while reducing the quick-swipe rate by \textbf{1.70\%}.
+\end{itemize}
 
-\datedsubsection{
-  \raisebox{-0.2em}{
-    \hspace{-0.6em}
-    \includegraphics[height=1.1em]{bytedance.jpg}
-  }
-  \hspace{-0.4em}
-  \textbf{ByteDance | Software Engineer}
-}{July 2023 -- July 2024}
+\vspace{0.4em}
+\datedline{\textbf{ByteDance}}{Jul 2023 -- Jul 2024}
+\textit{Software Engineer, Feishu Mail \textnormal{(full-time)}}
+\begin{itemize}
+  \item Developed and maintained the email-reading module across Android and iOS, delivering product features and improving the user experience.
+\end{itemize}
 
-\textbf{Responsibilities:} Developed and maintained the cross-platform (Android \& iOS) email-reading module, continuously improving the user experience.
-
-\vspace{0.5em}
 \section{Research Experience}
-
-\datedsubsection{\textbf{Post-Training Large Vision--Language Model Representations for Multimodal Recommendation | First Author, SIGIR 2026}}{}
-
-\textbf{Motivation:} Addressed semantic-space misalignment and noisy cross-modal fusion caused by independent modality encoders in conventional multimodal recommender systems. Explored large vision--language models (LVLMs) as unified item encoders and transferred their general visual-language knowledge to recommendation tasks.
-
-\textbf{Method:}
+\textbf{Vision-Language Model Adaptation for Multimodal Recommendation}\\
+\textit{First-author research, SIGIR 2026}
 \begin{itemize}
-  \item Constructed structured text from item names, categories, and attributes; fed images and text into an LVLM and mean-pooled hidden states to produce visual and textual item representations;
-  \item Designed item-level image--text contrastive learning to adapt general visual-language understanding to item recognition; created soft labels from in-batch item similarities and introduced structure-aware contrastive learning to preserve local item-semantic structure;
-  \item Proposed \textit{Modality-Aware Mixture-of-Experts LoRA}, partitioning LoRA parameters into modality experts with modality-aware routing to mitigate gradient conflicts and enable modality-specific LVLM adaptation;
-  \item Used the learned LVLM item representations to initialize ID embeddings through an MLP for sequential recommendation; validated the approach through backbone comparisons, ablation studies, and long-tail item experiments;
+  \item Adapted large vision-language models as unified item encoders to address misaligned image and text representations in multimodal recommendation. Encoded item images and structured text with hidden-state mean pooling.
+  \item Designed item-level image--text contrastive learning and structure-aware soft labels derived from in-batch item similarities to preserve local semantic relationships.
+  \item Proposed \textbf{Modality-Aware Mixture-of-Experts LoRA}, using modality-specific experts and routing to mitigate gradient conflicts during adaptation; used the resulting representations to initialise item ID embeddings for sequential recommendation.
+  \item Evaluated Qwen2.5-VL-7B and Llama-3.2-11B-Vision on Amazon Beauty, Sports and Toys, with backbone comparisons and ablation studies. Improved \textbf{Hit@10 by 8.3\%} and \textbf{NDCG@10 by 10.4\%} on average; gains on long-tail items reached \textbf{74\%} and \textbf{95\%}, respectively.
 \end{itemize}
 
-\textbf{Results:} Conducted extensive experiments on \textit{Amazon Beauty}, \textit{Sports}, and \textit{Toys}. Both \textit{Qwen2.5-VL 7B} and \textit{LLaMA-3.2 11B Vision} delivered consistent gains, improving \textit{Hit@10} by 8.3\% and \textit{NDCG@10} by 10.4\% on average; on long-tail item subsets, \textit{Hit@10} and \textit{NDCG@10} improved by 74\% and 95\%, respectively.
-
-\section{Publications}
+\section{Publications \& Preprints}
 \begin{itemize}
-  \item \textbf{Z. Rao}, P. Zhou, D. Chong, Z. Chen, S. Wang, N. Tang. 2026. Structural and Disentangled Adaptation of Large Vision Language Models for Multimodal Recommendation. In \textit{Proceedings of the 49th International ACM SIGIR Conference on Research and Development in Information Retrieval (SIGIR '26)} (\textbf{CCF-A}).
+  \item \textbf{Z. Rao}, P. Zhou, D. Chong, Z. Chen, S. Wang, N. Tang.
+  \textit{Structural and Disentangled Adaptation of Large Vision Language Models for Multimodal Recommendation.}
+  \textbf{SIGIR 2026}. First author.
 
-  \item P. Zhou, C. Liu, J. Ren, X. Zhou, Y. Xie, M. Cao, \textbf{Z. Rao}, Y.-L. Huang, D. Chong, J. Liu, J. B. Kim, S. Wang, R. C.-W. Wong, S. Kim. 2025. When Large Vision Language Models Meet Multimodal Sequential Recommendation: An Empirical Study. In \textit{Proceedings of the ACM on Web Conference 2025 (WWW '25)} (\textbf{CCF-A, Oral}).
+  \item Z. Chen, \textbf{Z. Rao}, W. Xiu, Y. Zhang, S. Cui, J. Chen, T. Zhao.
+  \textit{LatentRemedy: Efficient Remedy For Non-Prefix KV Cache Reuse in Multi-Agent Systems.}
+  \href{https://arxiv.org/abs/2610.18014}{arXiv:2610.18014}, 2026. Preprint; submitted to ACL 2027.
+
+  \item Z. Chen, T. Wang, \textbf{Z. Rao}, H. Zhu, D. Cao, T. Zhao.
+  \textit{SAGE: Structured Strategic Reasoning for Efficient LLM Game Playing.}
+  \href{https://arxiv.org/abs/2609.34342}{arXiv:2609.34342}, 2026. Preprint; submitted to ICLR 2027.
+
+  \item P. Zhou et al.\ (including \textbf{Z. Rao}).
+  \textit{When Large Vision Language Models Meet Multimodal Sequential Recommendation: An Empirical Study.}
+  \textbf{The Web Conference (WWW) 2025}. Oral presentation.
 \end{itemize}
 
 \end{document}
