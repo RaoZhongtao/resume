@@ -12,10 +12,10 @@
 
 \newcommand{\projectheading}[2]{%
   \par\addvspace{0.6em}%
-  \noindent\textbf{\ifthenelse{\isempty{#1}}{}{#1｜}#2}\par\nopagebreak\vspace{0.2em}%
+  \noindent\textbf{\ifthenelse{\isempty{#1}}{项目}{#1}「#2」}\par\nopagebreak\vspace{0.2em}%
 }
 \newenvironment{projectbody}{%
-  \begin{itemize}[label=\textbullet, leftmargin=1em, labelsep=0.35em,
+  \begin{itemize}[label={}, leftmargin=0pt, labelsep=0pt,
     topsep=0pt, partopsep=0pt, parsep=0pt, itemsep=0pt]%
 }{%
   \end{itemize}%
@@ -36,7 +36,7 @@
 
 % \section{\faGraduationCap\ 教育背景}
 \section{教育背景}
-\datedsubsection{\textbf{香港科技大学}｜数据科学与分析｜研究型硕士}{2024.08 - 2027.01}
+\datedsubsection{\textbf{香港科技大学（广州）}｜数据科学与分析｜研究型硕士}{2024.08 - 2027.01}
 
 
 \datedsubsection{\textbf{华南理工大学}｜信息与计算科学｜理学学士}{2019.09 - 2023.06}
@@ -71,12 +71,12 @@
 \item \textbf{背景}：基线精排模型对序列与非序列特征的深层交互建模有限，单纯扩宽 MLP 难以有效提升模型容量，制约了精排模型的进一步 Scaling Up.
 
 \item \textbf{技术方案}：
-\begin{itemize}[label=\textendash]
-  \item 将基线模型基于序列池化与 Transformer 的表征方式升级为 HyFormer，采用 Full Attention 对用户行为序列进行编码，并通过构造 Global Token 与用户序列进行Cross Attention，增强长序列依赖建模能力；
+\begin{itemize}[label=\textbullet, labelsep=0.5em]
+  \item \textbf{用户序列建模}：将基线模型基于序列池化与 Transformer 的表征方式升级为 HyFormer，采用 Full Attention 对用户行为序列进行编码，并通过构造 Global Token 与用户序列进行Cross Attention，增强长序列依赖建模能力；
   
-  \item 设计联合 Auto-Tokenizer，将 Sparse 与 Dense 特征自适应切分为 8 个 Non-Sequential Tokens；结合 RankMixer 建模序列兴趣与非序列特征之间的高阶交互，替代基线中以直接拼接为主的特征融合方式；
+  \item \textbf{特征交叉}：设计联合 Auto-Tokenizer，将 Sparse 与 Dense 特征自适应切分为 8 个 Non-Sequential Tokens；结合 RankMixer 建模序列兴趣与非序列特征之间的高阶交互，替代基线中以直接拼接为主的特征融合方式；
   
-  \item 将归一化 Static，HyFormer Token 及 Dense 特征共同输入 MaskNet；
+  \item \textbf{动态特征加权}：将归一化 Static，HyFormer Token 及 Dense 特征共同输入 MaskNet后，送入多任务头；
 \end{itemize}
 \item \textbf{离线实验}：将模型从 64M 参数扩展至约 95M，冷启训练7天约40亿样本，Click AUC \textbf{+0.14\%}。
 \end{projectbody}
@@ -104,10 +104,10 @@
 \item \textbf{背景}：营收中长尾主播是抖音直播平台主要的供给侧群体，包含大量具备向上跃迁至营收头部的高潜力主播，但由于流量不足难以持续开播；针对该问题，设计精准流量扶持策略，能提升流量转化效率，提升长期开播意愿，带动平台长期营收增长。
 
 \item \textbf{技术方案}：
-\begin{itemize}[label=\textendash]
-\item 以 XTR \textbf{90pct} 定义优质流量门槛，为中长尾营收主播设定优质流量目标，对规定时间内未达标主播在召回、粗排、精排链路进行扶持；
-\item 基于开播期间后验指标进行主播质量评估，识别高潜中长尾主播，提升有限扶持流量的资源利用效率；
-\item 将主播实际优质流量与目标流量的偏差作为控制信号，引入 \textbf{PID 控制算法}动态调节扶持强度，并结合高时效正排计数实时检测流量达标状态，及时停止已达标主播的扶持；
+\begin{itemize}[label=\textbullet, labelsep=0.5em]
+\item \textbf{定义优质流量与扶持目标}：以 XTR \textbf{90pct} 定义优质流量门槛，为中长尾营收主播设定优质流量目标，对规定时间内未达标主播在召回、粗排、精排链路进行扶持；
+\item \textbf{识别高潜中长尾主播}：基于开播期间后验指标进行主播质量评估，识别高潜中长尾主播，提升有限扶持流量的资源利用效率；
+\item \textbf{基于 PID 动态调节扶持强度}：将主播实际优质流量与目标流量的偏差作为控制信号，引入PID 控制算法动态调节扶持强度，并结合高时效正排计数实时检测流量达标状态，及时停止已达标主播的扶持；
 \end{itemize}
 
 \item \textbf{线上实验}：线上双边实验中，中长尾营收主播人均开播天数 \textbf{+0.3657\%}，人均开播时长 \textbf{+0.3806\%}，人均有效关注时间片数 \textbf{+1.3462\%}。
@@ -149,7 +149,7 @@
 \item \textbf{背景}：冷启动物品缺乏充分的后验交互信号，物品分发高度依赖内容等先验信息；现有多模态模型采用 BERT+ViT 双塔结构，视觉与文本表征由独立编码器产生，存在跨模态语义空间不一致问题，限制了冷启动物品的内容理解与召回效果。
 
 \item \textbf{技术方案}：
-\begin{itemize}[label=\textendash]
+\begin{itemize}[label=\textbullet, labelsep=0.5em]
 \item \textbf{构建弱监督图文/物品语义对比数据}：基于线上用户点击序列构造相邻物品正样本对，并利用物品共现分过滤低相关头部物品，降低热门物品噪声对对比学习的干扰；
 \item \textbf{基于 LVLM 统一建模多模态内容}：构造包含标题，视频 ASR 转写文本，图文正文及图片的多模态输入，使用 Qwen3-VL-3B 进行统一内容理解，提取隐藏状态作为物品多模态语义表征；
 \item \textbf{对比学习优化物品表征}：以用户行为构造的物品关联关系作为监督信号，引入 Batch 内对比学习对 LVLM 进行全参数微调，使物品表征更贴合线上用户兴趣与物品语义关联；
